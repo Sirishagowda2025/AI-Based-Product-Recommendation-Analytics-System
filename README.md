@@ -1,212 +1,181 @@
 # 🤖 AI-Based Product Recommendation & Analytics System
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit)](https://streamlit.io)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikit-learn)](https://scikit-learn.org)
-[![Google Colab](https://img.shields.io/badge/Google-Colab-F9AB00?logo=googlecolab)](https://colab.research.google.com)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+An intelligent recommendation system that analyses user behaviour, purchase history, and product attributes to deliver personalised product suggestions using **4 ML algorithms** combined into a Hybrid Engine — deployed as a live interactive web dashboard.
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![Pandas](https://img.shields.io/badge/Pandas-Data-150458?logo=pandas&logoColor=white)](https://pandas.pydata.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
-## 📌 Project Overview
+## ✨ What it does
 
-This project develops an **AI-powered product recommendation system** that analyses historical user data — including ratings, purchase history, browsing behaviour, and product attributes — to generate personalised product suggestions.
-
-Unlike basic projects that use a single algorithm, this system implements **4 distinct ML techniques** and combines them into a **Hybrid Engine** for superior recommendation accuracy. An interactive **Streamlit dashboard** with 5 tabs provides real-time analytics and recommendations.
-
----
-
-## 🎯 Key Features
-
-- ✅ **4 Recommendation Engines** — Content-Based, Collaborative Filtering, SVD, Hybrid
-- ✅ **12 EDA Charts** — User demographics, product trends, rating analysis, purchase funnels
-- ✅ **SVD Matrix Factorisation** — 20 latent factors, RMSE evaluated on held-out data
-- ✅ **Hybrid Engine** — Weighted blend of Collaborative (60%) + Content-Based (40%)
-- ✅ **5-Tab Streamlit Dashboard** — Recommendations, Analytics, Products, Users, Model Insights
-- ✅ **Live Deployment** — Google Colab + ngrok public URL
-- ✅ **No external API** — Fully self-contained, dataset uploaded via Colab
+- Recommends products to users based on past interactions, ratings, and browsing behaviour
+- Implements **4 different ML recommendation techniques** and combines them for best accuracy
+- Provides a full **analytics dashboard** with charts on user behaviour, product trends, and purchase patterns
+- Deployed as a **live Streamlit web app** — no code knowledge needed to use it
 
 ---
 
-## 📁 Repository Structure
+## 🧠 Recommendation Engines
 
+| Engine | Technique | How it works | Best for |
+|--------|-----------|-------------|----------|
+| **Content-Based** | Cosine Similarity | Recommends products similar in features (category, brand, price, rating) | New users |
+| **Collaborative Filtering** | User-User CF | Finds users with similar taste and recommends what they liked | Active users |
+| **SVD** | Matrix Factorisation | Discovers hidden preference patterns via latent factor decomposition | Large datasets |
+| **Hybrid** | Weighted Blend 60/40 | Combines Collaborative + Content-Based signals for best accuracy | All users |
+
+### Model Evaluation
 ```
-ai-product-recommendation/
-│
-├── project.py                          # Main Colab notebook (all cells)
-├── Product_Recommendation_Dataset.xlsx # Dataset (3 sheets)
-├── requirements.txt                    # Python dependencies
-├── README.md                           # This file
-│
-├── charts/                             # Generated EDA charts (12 PNGs)
-│   ├── 01_user_demographics.png
-│   ├── 02_product_overview.png
-│   ├── 03_user_behaviour.png
-│   ├── 04_rating_analysis.png
-│   ├── 05_monthly_trend.png
-│   ├── 06_top_products.png
-│   ├── 07_membership_analysis.png
-│   ├── 08_price_discount_insights.png
-│   ├── 09_interaction_heatmap.png
-│   ├── 10_category_correlation.png
-│   ├── 11_svd_evaluation.png
-│   └── 12_purchase_funnel.png
-│
-└── docs/
-    └── project_report.pdf              # Full internship report (optional)
+SVD RMSE on held-out ratings : ~0.82
+SVD Explained Variance        : ~0.68  (20 latent components)
+User-Item Matrix Shape        : 495 × 60
 ```
 
 ---
 
 ## 📊 Dataset
 
-The dataset is an Excel file with **3 sheets**:
+Three-sheet Excel file — **8,560 total records**
 
-| Sheet | Rows | Columns | Description |
-|-------|------|---------|-------------|
-| **Users** | 500 | 6 | User_ID, Age, Gender, Location, Membership, Join_Date |
-| **Products** | 60 | 12 | Product_ID, Name, Category, Brand, Price, Discount, Rating, Reviews |
-| **Interactions** | 8,000 | 9 | User_ID, Product_ID, Rating, Action, Device, Date, Purchased |
+| Sheet | Rows | Key Columns |
+|-------|------|-------------|
+| Users | 500 | User_ID, Age, Gender, City, Membership |
+| Products | 60 | Product_ID, Category, Brand, Price, Discount, Rating |
+| Interactions | 8,000 | User_ID, Product_ID, Rating, Action, Device, Date |
 
-**6 Product Categories:** Electronics · Clothing · Books · Home & Kitchen · Sports · Beauty
-
----
-
-## 🧠 Recommendation Engines
-
-| # | Engine | Technique | Input | Cold Start |
-|---|--------|-----------|-------|-----------|
-| 1 | **Content-Based** | Cosine Similarity | Product features | ✅ Works |
-| 2 | **Collaborative Filtering** | User-User CF | User ratings | ❌ Needs history |
-| 3 | **SVD** | Matrix Factorisation | User-Item matrix | ❌ Needs history |
-| 4 | **Hybrid** | Weighted Blend (60/40) | Both | ⚠️ Partial |
-
-### SVD Model Evaluation
-```
-RMSE on known ratings : ~0.82
-Explained Variance    : ~0.68 (20 latent components)
-User-Item Matrix Shape: 495 × 60
-```
+**6 categories:** Electronics · Clothing · Books · Home & Kitchen · Sports · Beauty
 
 ---
 
-## 🚀 How to Run
+## 📈 EDA — 12 Charts
 
-### Option A — Google Colab (Recommended)
+| # | Chart | Insight |
+|---|-------|---------|
+| 1 | User demographics | Age distribution, gender split |
+| 2 | Product catalogue | Price by category, products per category |
+| 3 | Interaction behaviour | Action types (view/cart/purchase/wishlist), device split |
+| 4 | Rating analysis | Distribution, avg rating per category |
+| 5 | Monthly trend | Interaction and purchase trend over time |
+| 6 | Top products | Top 10 most interacted products |
+| 7 | Membership analysis | Purchase rate by membership tier |
+| 8 | Price & discount | Discount vs rating scatter |
+| 9 | User-product heatmap | Rating heatmap (top 15 users × top 15 products) |
+| 10 | Co-purchase correlation | Category pair correlation from purchase history |
+| 11 | SVD evaluation | Explained variance curve |
+| 12 | Purchase funnel | Action breakdown by category |
 
-1. Open [Google Colab](https://colab.research.google.com)
-2. Upload `project.py`
-3. Run **Cell 1** — installs all dependencies
-4. Run **Cell 2** — imports libraries
-5. Run **Cell 3** — upload `Product_Recommendation_Dataset.xlsx` when prompted
-6. Run **Cells 4–9** — preprocessing, EDA, model training
-7. Run **Cell 10** — writes `app.py`
-8. Run **Cell 11** — launches Streamlit (add your ngrok token first)
+---
 
-```python
-# In Cell 11, replace with your free token from dashboard.ngrok.com
-NGROK_TOKEN = "YOUR_NGROK_TOKEN_HERE"
+## 🖥️ Dashboard — 5 Tabs
+
+| Tab | What it shows |
+|-----|--------------|
+| 🎯 **Recommendations** | Select any user → pick engine → get personalised product cards with scores |
+| 📊 **Analytics** | Monthly trends, action types, purchases by category, rating distribution |
+| 📦 **Products** | Filterable product catalogue, avg price by category, most reviewed |
+| 👤 **Users** | Age, city, membership, and purchase rate breakdowns |
+| 🔬 **Model Insights** | SVD variance curve, engine comparison table, rating heatmap |
+
+---
+
+## 🚀 Quick Start
+
+### Option A — Google Colab
+
 ```
+1. Open colab.research.google.com
+2. Upload project_clean.py
+3. Run Cell 1  →  installs all dependencies
+4. Run Cell 2  →  imports libraries
+5. Run Cell 3  →  upload Product_Recommendation_Dataset.xlsx when prompted
+6. Run Cells 4–9  →  preprocessing, EDA, model training
+7. Run Cell 10  →  writes app.py
+8. Run Cell 11  →  paste ngrok token → get live URL → open in browser
+```
+
+> Get a free ngrok token at [dashboard.ngrok.com](https://dashboard.ngrok.com)
 
 ### Option B — Local Machine
 
 ```bash
-# Step 1: Install dependencies
+# 1. Install dependencies
 pip install -r requirements.txt
 
-# Step 2: Run the notebook cells manually, OR run streamlit directly
+# 2. Run all cells in project_clean.py first to generate app.py
+# 3. Launch the dashboard
 streamlit run app.py
 ```
 
-> **Note:** For local run, comment out the `from google.colab import files` import and replace `files.upload()` with direct `pd.read_excel("Product_Recommendation_Dataset.xlsx")`.
+> For local run: in Cell 3, replace `files.upload()` with `pd.read_excel("Product_Recommendation_Dataset.xlsx")`
+> and remove the `from google.colab import files` import line.
 
 ---
 
-## 📱 Streamlit Dashboard Tabs
+## ⚙️ How the Hybrid Engine works
 
-| Tab | What it shows |
-|-----|--------------|
-| 🎯 **Recommendations** | Select a user → choose engine → get personalised product cards |
-| 📊 **Analytics** | Monthly trends, action types, purchases by category, rating distribution |
-| 📦 **Products** | Filterable product catalogue, avg price by category, top reviewed |
-| 👤 **Users** | Age distribution, city breakdown, membership analysis, purchase rates |
-| 🔬 **Model Insights** | SVD explained variance, engine comparison table, rating heatmap |
+```
+User interactions
+      │
+      ├──► Collaborative Filtering (user-user cosine similarity) ──► score_CF
+      │
+      └──► Content-Based Filtering (product feature cosine sim)  ──► score_CB
+                                                                          │
+                                    Hybrid Score = 0.6 × score_CF + 0.4 × score_CB
+                                                                          │
+                                                              Top-N product recommendations
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
-```
-Language    : Python 3.8+
-ML Library  : scikit-learn (SVD, Cosine Similarity, LabelEncoder, MinMaxScaler)
-Data        : Pandas, NumPy, SciPy (sparse matrices)
-Visualisation: Matplotlib, Seaborn
-Web App     : Streamlit
-Deployment  : Google Colab + pyngrok
-Dataset     : openpyxl (Excel reading)
-```
+| Layer | Tools |
+|-------|-------|
+| Language | Python 3.8+ |
+| ML & Data | scikit-learn, Pandas, NumPy, SciPy |
+| Visualisation | Matplotlib, Seaborn |
+| Web App | Streamlit |
+| Deployment | pyngrok + Google Colab |
+| Dataset | openpyxl (Excel) |
 
 ---
 
-## 📦 Installation
+## 📂 Project Structure
 
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn scipy streamlit pyngrok openpyxl
 ```
-
-Or use the requirements file:
-
-```bash
-pip install -r requirements.txt
+ai-product-recommendation/
+│
+├── project_clean.py                         ← Main notebook (all cells)
+├── Product_Recommendation_Dataset.xlsx      ← Dataset (3 sheets)
+├── README.md                                ← This file
+├── requirements.txt                         ← pip dependencies
+├── .gitignore                               ← Excludes generated files
+│
+└── charts/                                  ← EDA output (12 PNGs)
+    ├── 01_user_demographics.png
+    ├── 02_product_overview.png
+    ├── 03_user_behaviour.png
+    ├── 04_rating_analysis.png
+    ├── 05_monthly_trend.png
+    ├── 06_top_products.png
+    ├── 07_membership_analysis.png
+    ├── 08_price_discount_insights.png
+    ├── 09_interaction_heatmap.png
+    ├── 10_category_correlation.png
+    ├── 11_svd_evaluation.png
+    └── 12_purchase_funnel.png
 ```
-
----
-
-## 📈 Results
-
-- **Content-Based Engine** — recommends by product feature similarity (cosine score)
-- **Collaborative Engine** — recommends based on similar user behaviour
-- **SVD Engine** — discovers hidden user preference patterns via matrix factorisation
-- **Hybrid Engine** — best overall accuracy by blending collaborative + content signals
-
----
-
-## 🏢 About the Internship
-
-| Field | Details |
-|-------|---------|
-| Company | Inventeron Technologies and Business Solutions LLP |
-| Location | Bangalore, Karnataka |
-| Role | Data Analyst Intern |
-| Duration | 15 Weeks |
-| Domain | Data Science & Machine Learning |
-| University | Visvesvaraya Technological University, Belagavi |
-
-**Inventeron Technologies** (est. 2013) provides engineering solutions in AI, Data Science, IoT, Embedded Systems, and EV Technologies. Clients include Indian Army, Indian Air Force, and various SMEs.
-
----
-
-## ⚠️ Important Notes
-
-- **Never upload your ngrok token** to GitHub. Always use `"YOUR_NGROK_TOKEN_HERE"` as placeholder.
-- The dataset is synthetic (generated for academic purposes) — not real customer data.
-- Colab sessions reset — re-run all cells if the session expires.
 
 ---
 
 ## 📄 License
 
-This project is submitted as part of the Bachelor of Engineering internship requirement at VTU, Belagavi.  
-For academic use only.
+MIT — free to use, modify, and distribute with attribution.
 
 ---
 
-## 👥 Authors
-
-| Name | USN | Branch |
-|------|-----|--------|
-| Student Name | USN Here | Computer Science & Design |
-
----
-
-*Carried out at **Inventeron Technologies and Business Solutions LLP** under the guidance of Mohammed Atha H K, Chief Technical Officer.*
+> Built with Python · scikit-learn · Streamlit
