@@ -1,8 +1,5 @@
 # 🤖 AI-Based Product Recommendation & Analytics System
 
-> **Internship Major Project** — Inventeron Technologies and Business Solutions LLP, Bangalore  
-> Bachelor of Engineering | Computer Science & Design | VTU, Belagavi | 2026–2027
-
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit)](https://streamlit.io)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikit-learn)](https://scikit-learn.org)
